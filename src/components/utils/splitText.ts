@@ -31,6 +31,8 @@ export default function setSplitText() {
       linesClass: "split-line",
     });
 
+    if (!para.splitInstance) return; // ✅ null check
+
     para.anim = gsap.fromTo(
       para.splitInstance.words,
       { autoAlpha: 0, y: 80 },
@@ -54,10 +56,14 @@ export default function setSplitText() {
       title.anim.progress(1).kill();
       title.splitInstance?.revert();
     }
+
     title.splitInstance = new SplitText(title, {
       type: "chars,lines",
       linesClass: "split-line",
     });
+
+    if (!title.splitInstance) return; // ✅ null check
+
     title.anim = gsap.fromTo(
       title.splitInstance.chars,
       { autoAlpha: 0, y: 80, rotate: 10 },
