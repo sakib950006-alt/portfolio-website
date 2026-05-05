@@ -5,7 +5,7 @@ import { SplitText } from "gsap-trial/SplitText";
 
 interface ParaElement extends HTMLElement {
   anim?: gsap.core.Animation;
-  split?: SplitText;
+  splitInstance?: SplitText;
 }
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
@@ -23,16 +23,16 @@ export default function setSplitText() {
     para.classList.add("visible");
     if (para.anim) {
       para.anim.progress(1).kill();
-      para.split?.revert();
+      para.splitInstance?.revert();
     }
 
-    para.split = new SplitText(para, {
+    para.splitInstance = new SplitText(para, {
       type: "lines,words",
       linesClass: "split-line",
     });
 
     para.anim = gsap.fromTo(
-      para.split.words,
+      para.splitInstance.words,
       { autoAlpha: 0, y: 80 },
       {
         autoAlpha: 1,
@@ -48,17 +48,18 @@ export default function setSplitText() {
       }
     );
   });
+
   titles.forEach((title: ParaElement) => {
     if (title.anim) {
       title.anim.progress(1).kill();
-      title.split?.revert();
+      title.splitInstance?.revert();
     }
-    title.split = new SplitText(title, {
+    title.splitInstance = new SplitText(title, {
       type: "chars,lines",
       linesClass: "split-line",
     });
     title.anim = gsap.fromTo(
-      title.split.chars,
+      title.splitInstance.chars,
       { autoAlpha: 0, y: 80, rotate: 10 },
       {
         autoAlpha: 1,
