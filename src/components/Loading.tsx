@@ -46,7 +46,7 @@ const Loading = ({ percent }: { percent: number }) => {
     <>
       <div className="loading-header">
         <a href="/#" className="loader-title" data-cursor="disable">
-          Logo
+          Shaquib
         </a>
         <div className={`loaderGame ${clicked && "loader-out"}`}>
           <div className="loaderGame-container">
@@ -95,22 +95,16 @@ export default Loading;
 export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
 
+  // 0 → 92% in ~700ms (every 10ms, +11 to +15 per tick)
   let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+    if (percent < 92) {
+      let rand = Math.round(Math.random() * 4) + 11;
+      percent = Math.min(percent + rand, 92);
       setLoading(percent);
     } else {
       clearInterval(interval);
-      interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
-        }
-      }, 2000);
     }
-  }, 100);
+  }, 10);
 
   function clear() {
     clearInterval(interval);
@@ -120,6 +114,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
   function loaded() {
     return new Promise<number>((resolve) => {
       clearInterval(interval);
+      // 92 → 100% in ~250ms (every 30ms, +1 per tick)
       interval = setInterval(() => {
         if (percent < 100) {
           percent++;
@@ -128,8 +123,9 @@ export const setProgress = (setLoading: (value: number) => void) => {
           resolve(percent);
           clearInterval(interval);
         }
-      }, 2);
+      }, 30);
     });
   }
+
   return { loaded, percent, clear };
 };

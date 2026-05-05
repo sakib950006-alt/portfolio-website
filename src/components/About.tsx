@@ -6,10 +6,14 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I began my journey with an interest in design, which helped me
+           develop a strong understanding of visual structure and user experience.
+            My curiosity about how web applications work motivated me to learn
+             programming and modern web technologies..
+
+
         </p>
+        
       </div>
     </div>
   );
