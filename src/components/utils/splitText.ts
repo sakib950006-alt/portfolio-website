@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
-import { SplitText } from "gsap-trial/SplitText";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { SplitText } from "gsap/SplitText";
 
 interface ParaElement extends HTMLElement {
   anim?: gsap.core.Animation;
@@ -31,7 +31,7 @@ export default function setSplitText() {
       linesClass: "split-line",
     });
 
-    if (!para.splitInstance) return; // ✅ null check
+    if (!para.splitInstance) return;
 
     para.anim = gsap.fromTo(
       para.splitInstance.words,
@@ -62,7 +62,7 @@ export default function setSplitText() {
       linesClass: "split-line",
     });
 
-    if (!title.splitInstance) return; // ✅ null check
+    if (!title.splitInstance) return;
 
     title.anim = gsap.fromTo(
       title.splitInstance.chars,
